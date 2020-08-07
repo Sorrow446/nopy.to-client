@@ -17,6 +17,15 @@ class Client():
 		# if username and password:
 			# self.auth(username, password)
 
+	# def auth(self, username, password):
+		# data = {
+			# 'user': username,
+			# 'pass': password
+		# }
+		# data = self.make_call('login', data=data)
+		# self.is_auth = True
+		# return data
+
 	def check_url(self, url):
 		regex = r'^https://nopy.to/([a-zA-Z\d]{8})/([\w\-.]+)/?$'
 		match = re.match(regex, url)
@@ -34,15 +43,6 @@ class Client():
 			raise BadResponseError(
 				"Error present in response. Message from API: {}".format(resp['msg']))
 		return resp['msg']
-
-	def auth(self, username, password):
-		data = {
-			'user': username,
-			'pass': password
-		}
-		data = self.make_call('login', data=data)
-		self.is_auth = True
-		return data
 
 	# Internal calling only.
 	def get_file_url(self, code, id, request, session):
